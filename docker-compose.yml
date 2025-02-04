@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  core:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    container_name: django-core
+    environment:
+      DJANGO_SETTINGS_MODULE: core.settings
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+    command: gunicorn core.wsgi:application --bind 0.0.0.0:8000 --reload
+    networks:
+      - backend
+    working_dir: /app
+    
+  # nginx 서비스는 일단 주석 처리
+  # nginx:
+  #   build: ...
+
+networks:
+  backend:
+    driver: bridge
