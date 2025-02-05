@@ -1,4 +1,22 @@
 import os
+from dotenv import load_dotenv
+from pymongo import MongoClient
+
+# 환경 설정 (기본값은 development)
+ENVIRONMENT = os.environ.get('DJANGO_ENV', 'development')
+
+env_file = f'.env.{ENVIRONMENT}'
+load_dotenv(env_file)
+
+# MongoDB 설정
+MONGODB_SETTINGS = {
+    'url': os.getenv('MONGODB_URL'),
+    'db_name': 'subscr_renew'
+}
+
+# MongoDB 클라이언트와 DB 인스턴스 생성
+mongodb_client = MongoClient(MONGODB_SETTINGS['url'])
+db = mongodb_client[MONGODB_SETTINGS['db_name']]
 
 INSTALLED_APPS = [
     # 기본 앱들
@@ -78,3 +96,4 @@ STATIC_URL = 'static/'
 
 # Default primary key field type
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
