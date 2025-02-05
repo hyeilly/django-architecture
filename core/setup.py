@@ -5,7 +5,7 @@ setup(
     version='0.1.0',
     packages=find_packages(include=['core', 'core.*', 'common']),  # common 패키지 포함
     install_requires=[
-        "pymongo>=4.0",
-        "mongoengine>=0.24.0"
+        "pymongo",
+        "mongoengine"
     ]
 )
