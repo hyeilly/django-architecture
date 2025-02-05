@@ -1,0 +1,12 @@
+from setuptools import setup, find_packages
+
+setup(
+    name='core',
+    version='0.1.0',
+    packages=find_packages(include=['core', 'core.*', 'common']),  # common 패키지 포함
+    install_requires=[
+        "Django>=4.0",
+        "pymongo>=4.0",
+        "mongoengine>=0.24.0"
+    ]
+)
